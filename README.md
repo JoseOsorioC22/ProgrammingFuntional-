@@ -1,4 +1,4 @@
-# ProgrammingFuntional-
+# Programacion Funcional con Java 8
 Este es un repositorio enfocado en la programación funcional en Java, en la versión 1.8 : Lambdas, Maps, Comparators, Opcionals, API Date,  API Stream etc.
 
 La idea es hacer ejercicios y mostrar la cantidad de cosas que se pueden realizar con el enfoque declarativo. 
