@@ -1,13 +1,12 @@
 package co.osorio.cursoMitocode.VideoTutorial;
 
+import java.text.CollationElementIterator;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class App {
 
@@ -40,13 +39,14 @@ public class App {
         Producto producto1 = new Producto(45, "Bandeja paisa", 20.5);
         Producto producto2 = new Producto(786, "Casuela de marizcos", 35.5);
         Producto producto3 = new Producto(454, "Ceviche", 15.5);
+        Producto producto4 = new Producto(459, "Ceviche", 19.5);
 
 
         // Lista de personas
         List<Persona> personas = Arrays.asList(persona1, persona2, persona3, persona4, persona5, persona6, persona7, persona8);
 
         // Lista de productos
-        List<Producto> productos = Arrays.asList(producto1, producto2, producto3);
+        List<Producto> productos = Arrays.asList(producto1, producto2, producto3, producto4);
 
     /*
     System.out.println("Los nombres de las personas que se encuentran en la lista son: ");
@@ -103,7 +103,7 @@ public class App {
 */
 
         // SKIP Y LIMIT PARA PAGINACION
-
+/*
         // Numero de pagina
         int pageNumber = 0;
 
@@ -112,6 +112,30 @@ public class App {
 
         personas.stream()
                 .skip(pageNumber).limit(pageSize).forEach((p) -> System.out.println(p.getNombre()));
+
+
+        // agrupando por nombre y contando cuantos productos existen con dicho nombre.
+ productos
+                .stream()
+                .collect(Collectors.groupingBy
+                        (Producto::getNombre,
+                                Collectors.counting()))
+                .forEach( (p,k) -> System.out.println("clave " + p  + "- valor: " + k )  );
+
+
+
+// agrupando por nombre y sumando el precio de cada producto por nombre.
+
+        productos.stream()
+                .collect(Collectors.groupingBy(
+                        Producto::getNombre, Collectors.summingDouble(Producto::getPrecio)
+                )).forEach((k,v) -> System.out.println("clave: " + k +  " - valor:  " + v ) );  ;
+
+
+          Optional<Double>   op =    productos.stream().map(Producto::getPrecio).reduce(Double::sum)  ;
+
+          System.out.println("Opcional: " + op.get());
+*/
 
 
     }
